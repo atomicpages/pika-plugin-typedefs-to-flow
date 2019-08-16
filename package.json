@@ -1,6 +1,6 @@
 {
     "name": "pika-plugin-typedefs-to-flow",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "A @pika/pack plugin to covert typescripts types to flow types",
     "main": "index.js",
     "scripts": {
