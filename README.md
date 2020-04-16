@@ -4,7 +4,7 @@ A @pika/pack plugin to convert typescript definitions to flow types.
 
 ## Usage
 
-```bash
+```sh
 npm i flowgen pika-plugin-typedefs-to-flow
 ```
 
@@ -15,10 +15,7 @@ When creating your pipeline, be sure `pika-plugin-typedefs-to-flow` us used afte
     "@pika/pack": {
         "pipeline": [
             [
-                "@pika/plugin-ts-standard-pkg",
-                {
-                    "excludes": "playground/**"
-                }
+                "@pika/plugin-ts-standard-pkg"
             ],
             [
                 "pika-plugin-typedefs-to-flow"

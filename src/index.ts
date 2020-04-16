@@ -1,4 +1,4 @@
-import fs, { mkdir, write } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
@@ -68,11 +68,11 @@ export async function build({ out, options = {}, reporter }: Options): Promise<v
         ...options,
     };
 
-    const files = glob.sync(path.join(out, 'dist-types/**/*.d.ts'));
+    const files = glob.sync(path.normalize(path.join(out, 'dist-types/**/*.d.ts')));
     const writePath = path.join(out, 'dist-flow');
 
     // strips `out` path part and gives us something like component/x/index.d.ts
-    const replacePath = path.join(out + '/dist-types/');
+    const replacePath = path.normalize(path.join(out + '/dist-types/'));
 
     let failures = 0;
 
