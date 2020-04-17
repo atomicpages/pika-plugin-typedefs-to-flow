@@ -5,7 +5,7 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "build": "../node_modules/.bin/rimraf pkg && ../node_modules/.bin/pika-pack build",
+        "build": "npx rimraf pkg && npx @pika/pack build",
         "test": "npm run build && node assert.js"
     },
     "@pika/pack": {
