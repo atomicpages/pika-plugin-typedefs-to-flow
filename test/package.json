@@ -16,6 +16,7 @@
             [
                 "../pkg",
                 {
+                    "debug": true,
                     "plugins": [
                         [
                             "@rollup/plugin-strip",

@@ -52,10 +52,27 @@ interface Options extends BuilderOptions {
          * Disable flow definition beautification.
          */
         beautify?: boolean;
+
+        /**
+         * Set debugging output.
+         */
+        debug?: boolean;
     };
 }
 
+const debugging = (reporter: Options['reporter'], debug?: boolean) => {
+    const logger = (message: string) => {
+        if (debug) {
+            reporter.info(message);
+        }
+    };
+
+    return logger;
+};
+
 export async function build({ out, options = {}, reporter }: Options): Promise<void> {
+    const debug = debugging(reporter, options.debug);
+
     if (!fs.existsSync(path.join(out, 'dist-types'))) {
         throw new MessageError(
             'Missing dist-types. Did you forgot to use pika-plugin-typedefs-to-flow after @pika/plugin-ts-standard-pkg?'
@@ -81,6 +98,7 @@ export async function build({ out, options = {}, reporter }: Options): Promise<v
         const dir = path.dirname(path.join(writePath, file.replace(replacePath, '')));
 
         reporter.info(`Converting ${basename}`);
+        debug(`Using dir ${dir}`);
 
         try {
             let def = compiler.compileDefinitionFile(file, defaultOptions.flowgen);
@@ -93,6 +111,7 @@ export async function build({ out, options = {}, reporter }: Options): Promise<v
                 mkdirp.sync(dir);
             }
 
+            debug(`Writing file ${path.join(dir, basename.replace('.d.ts', '.js.flow'))}`);
             fs.writeFileSync(path.join(dir, basename.replace('.d.ts', '.js.flow')), def);
         } catch (e) {
             failures++;
