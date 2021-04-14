@@ -4,11 +4,9 @@ import glob from 'glob';
 import mkdirp from 'mkdirp';
 
 import { BuilderOptions, MessageError } from '@pika/types';
-
-// @ts-ignore
 import { compiler, beautify } from 'flowgen';
 
-interface Options extends BuilderOptions {
+type Options = BuilderOptions & {
     options: {
         flowgen?: {
             /**
@@ -58,7 +56,7 @@ interface Options extends BuilderOptions {
          */
         debug?: boolean;
     };
-}
+};
 
 const debugging = (reporter: Options['reporter'], debug?: boolean) => {
     const logger = (message: string) => {
