@@ -55,7 +55,7 @@
         "flowgen": ">=1.10.0"
     },
     "dependencies": {
-        "@pika/types": "^0.6.0",
+        "@pika/types": "^0.9.2",
         "glob": "^7.0.0",
         "mkdirp": "^1.0.0"
     },
