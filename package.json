@@ -56,7 +56,7 @@
     },
     "dependencies": {
         "@pika/types": "^0.6.0",
-        "glob": "^7.0.0",
+        "glob": "^8.1.0",
         "mkdirp": "^1.0.0"
     },
     "prettier": "@djthoms/prettier-config"
